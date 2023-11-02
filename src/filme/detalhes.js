@@ -13,6 +13,23 @@ function Detalhes() {
   const [elenco, setElenco] = useState([]);
   const [trailerInfo, setTrailerInfo] = useState([]);
 
+    useEffect(() => {
+    axios
+      .get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", {
+        params: {
+          api_key: "40ae060748d346a47b5c16bf579a6764",
+          language: "en-US",
+          page: 1,
+        },
+      })
+      .then((response) => {
+        setMovies(response.data.results);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar os filmes:", error);
+      });
+  }, []);
+
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -72,6 +89,13 @@ function Detalhes() {
       });
   }, []);
 
+  function updateProgressBar() {
+    const circle = document.querySelector('#circleProgress');
+    const number = document.querySelector('#numberProgress');
+    number.textContent = `${Math.round(movieDetails.vote_average * 10)}%`;
+    circle.style.strokeDashoffset = 251 - 2.51 * (movieDetails.vote_average * 10);
+  }
+
   return (
     <div className="App">
       <BarraLogo />
@@ -79,6 +103,7 @@ function Detalhes() {
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
           alt={movieDetails.title}
+          onClick={updateProgressBar}
         />
 
         <div className="cabecalhoDescricao">
@@ -99,24 +124,17 @@ function Detalhes() {
             </p>
           </div>
 
-          <p className="classificacao">
-            <div className="circle-wrap">
-              <div className="circle">
-                <div className="mask full">
-                  <div className="fill"></div>
-                </div>
-
-                <div className="mask half">
-                  <div className="fill"></div>
-                </div>
-
-                <div className="inside-circle">
-                  {Math.round(movieDetails.vote_average * 10)}%
-                </div>
-              </div>
+          <div className="box">
+            <div className="box-circle">
+              <svg>
+                <circle cx="40" cy="40" r="40"></circle>
+                <circle id="circleProgress" cx="40" cy="40" r="40"></circle>
+              </svg>
             </div>
-            <p className="avaliacao">Avaliação dos usuários</p>
-          </p>
+            <div className="number">
+              <h5 id="numberProgress">{Math.round(movieDetails.vote_average * 10)}%</h5>
+            </div>
+          </div>
 
           <h4>Sinopse</h4>
           <p>{movieDetails.overview}</p>
@@ -158,6 +176,7 @@ function Detalhes() {
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
+                  onClick={updateProgressBar}
                 />
                 <h5>{movie.title}</h5>
                 <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
