@@ -12,7 +12,6 @@ function Detalhes() {
   const [genres, setGenres] = useState([]);
   const [elenco, setElenco] = useState([]);
   const [trailerInfo, setTrailerInfo] = useState([]);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,19 +23,6 @@ function Detalhes() {
       .then((response) => {
         setMovieDetails(response.data);
         setGenres(response.data.genres);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar detalhes do filme:", error);
-      });
-
-      axios
-      .get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
-        params: {
-          api_key: "40ae060748d346a47b5c16bf579a6764",
-        },
-      })
-      .then((response) => {
-        setData(response.data);
       })
       .catch((error) => {
         console.error("Erro ao buscar detalhes do filme:", error);

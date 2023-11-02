@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../App.css";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import { Link } from "react-router-dom"; 
 import BarraLogo from "./barraLogo";
 
@@ -79,7 +79,7 @@ function Home() {
             </Link>
 
             <h5>{movie.title}</h5>
-            {/* <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p> */}
+            <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
           </div>
         ))}
       </div>
