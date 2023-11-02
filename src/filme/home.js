@@ -7,7 +7,7 @@ import BarraLogo from "./barraLogo";
 
 function Home() {
   const [movies, setMovies] = useState([]);
-  const [setGenres] = useState([]);
+  const [setGenres] = useState([]); // Corrigido aqui
 
   useEffect(() => {
     axios
@@ -34,13 +34,13 @@ function Home() {
         },
       })
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setGenres(response.data);
       })
       .catch((error) => {
         console.error("Erro ao buscar detalhes do filme:", error);
       });
-  });
+  }, []);
 
   return (
     <div className="App">

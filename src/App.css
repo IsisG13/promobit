@@ -256,10 +256,8 @@ word-wrap: break-word
 
 .box {
   position: absolute;
-  top: 50%;
-  left: 27.5%;
+  top: 334px;
   text-transform: (-50%, -50%);
-  /* background: rgba(0, 0, 0, 0.288); */
   border-radius: 5px;
   padding: 15px;
 }
@@ -279,7 +277,6 @@ word-wrap: break-word
   transform: translate(5px, 5px);
   stroke-dasharray: 251;
   stroke-dashoffset: 251;
-  /* stroke-dashoffsets: "252"; */
 }
 
 circle:nth-child(1){

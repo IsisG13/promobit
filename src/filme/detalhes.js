@@ -13,23 +13,6 @@ function Detalhes() {
   const [elenco, setElenco] = useState([]);
   const [trailerInfo, setTrailerInfo] = useState([]);
 
-    useEffect(() => {
-    axios
-      .get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", {
-        params: {
-          api_key: "40ae060748d346a47b5c16bf579a6764",
-          language: "en-US",
-          page: 1,
-        },
-      })
-      .then((response) => {
-        setMovies(response.data.results);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os filmes:", error);
-      });
-  }, []);
-
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -38,8 +21,11 @@ function Detalhes() {
         },
       })
       .then((response) => {
+        console.log(response);
         setMovieDetails(response.data);
         setGenres(response.data.genres);
+        // Chame a função updateProgressBar após a atualização dos detalhes do filme
+        updateProgressBar();
       })
       .catch((error) => {
         console.error("Erro ao buscar detalhes do filme:", error);
@@ -89,11 +75,20 @@ function Detalhes() {
       });
   }, []);
 
+  useEffect(() => {
+    // Não é necessário chamar updateProgressBar aqui, pois já foi chamado na primeira useEffect.
+  }, [movieDetails]); // Adicione movieDetails como uma dependência se necessário.
+
   function updateProgressBar() {
-    const circle = document.querySelector('#circleProgress');
-    const number = document.querySelector('#numberProgress');
+    console.log("!");
+    const circle = document.querySelector("#circleProgress");
+    console.log(circle);
+    const number = document.querySelector("#numberProgress");
+    console.log(number);
     number.textContent = `${Math.round(movieDetails.vote_average * 10)}%`;
-    circle.style.strokeDashoffset = 251 - 2.51 * (movieDetails.vote_average * 10);
+    console.log(movieDetails.vote_average);
+    return (circle.style.strokeDashoffset =
+      251 - 2.51 * (movieDetails.vote_average * 10));
   }
 
   return (
@@ -120,7 +115,8 @@ function Detalhes() {
               </div>
             )}
             <p className="duracao">
-              {Math.floor(movieDetails.runtime / 60)}h {movieDetails.runtime % 60}min •{" "}
+              {Math.floor(movieDetails.runtime / 60)}h{" "}
+              {movieDetails.runtime % 60}min •{" "}
             </p>
           </div>
 
@@ -132,27 +128,38 @@ function Detalhes() {
               </svg>
             </div>
             <div className="number">
-              <h5 id="numberProgress">{Math.round(movieDetails.vote_average * 10)}%</h5>
+            <h5 id="numberProgress">{movieDetails.vote_average ? movieDetails.vote_average * 10 : 0}%</h5>
             </div>
           </div>
 
           <h4>Sinopse</h4>
-          <p>{movieDetails.overview}</p>
+          <p>
+            {movieDetails.overview
+              ? movieDetails.overview
+              : "A sinopse não está disponivel em portugues"}
+          </p>
         </div>
       </div>
       <div className="conteudoDetalhes">
         <h2>Elenco Oficial</h2>
         <div className="container-elenco">
-          {elenco.map((actor) => (
-            <div key={actor.id}>
+        {elenco.map((actor) => (
+          <div key={actor.id}>
+            {actor.profile_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                 alt={actor.name}
               />
-              <h4>{actor.name}</h4>
-              <p>{actor.character}</p>
-            </div>
-          ))}
+            ) : (
+              <img
+                src="/caminho_para_imagem_padrao.png" // Substitua pelo caminho da imagem padrão
+                alt={actor.name}
+              />
+            )}
+            <h4>{actor.name}</h4>
+            <p>{actor.character}</p>
+          </div>
+        ))}
         </div>
 
         <div className="trailer">
@@ -176,7 +183,6 @@ function Detalhes() {
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
-                  onClick={updateProgressBar}
                 />
                 <h5>{movie.title}</h5>
                 <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
