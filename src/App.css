@@ -248,3 +248,8 @@ word-wrap: break-word
   margin-top: -57px;
   /* margin-left: 106px; */
 }
+
+.recomendacoes-container {
+  text-decoration: none;
+  color: #000;
+}

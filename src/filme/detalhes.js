@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import BarraLogo from "./barraLogo";
 import "../App.css";
-// import { format } from "date-fns";
 
 function Detalhes() {
   const [movies, setMovies] = useState([]);
@@ -12,7 +11,8 @@ function Detalhes() {
   const { movieId } = useParams();
   const [genres, setGenres] = useState([]);
   const [elenco, setElenco] = useState([]);
-  const [trailerInfo, setTrailer] = useState([]);
+  const [trailerInfo, setTrailerInfo] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,6 +24,19 @@ function Detalhes() {
       .then((response) => {
         setMovieDetails(response.data);
         setGenres(response.data.genres);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar detalhes do filme:", error);
+      });
+
+      axios
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
+        params: {
+          api_key: "40ae060748d346a47b5c16bf579a6764",
+        },
+      })
+      .then((response) => {
+        setData(response.data);
       })
       .catch((error) => {
         console.error("Erro ao buscar detalhes do filme:", error);
@@ -43,13 +56,13 @@ function Detalhes() {
       });
 
     axios
-      .get(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
         params: {
           api_key: "40ae060748d346a47b5c16bf579a6764",
         },
       })
       .then((response) => {
-        setTrailer(response.data.casts);
+        setTrailerInfo(response.data.results);
       })
       .catch((error) => {
         console.error("Erro ao buscar o trailer do filme:", error);
@@ -84,10 +97,7 @@ function Detalhes() {
 
         <div className="cabecalhoDescricao">
           <div className="header-info">
-            <h3>
-              {movieDetails.title}
-              {/* {format(new Date(movieDetails.release_date), " dd/MM/yyyy")} */}
-            </h3>
+            <h3>{movieDetails.title}</h3>
             {genres && (
               <div className="genre">
                 {genres.map((genre, index) => (
@@ -99,8 +109,7 @@ function Detalhes() {
               </div>
             )}
             <p className="duracao">
-              {Math.floor(movieDetails.runtime / 60)}h{" "}
-              {movieDetails.runtime % 60}min •{" "}
+              {Math.floor(movieDetails.runtime / 60)}h {movieDetails.runtime % 60}min •{" "}
             </p>
           </div>
 
@@ -142,9 +151,17 @@ function Detalhes() {
           ))}
         </div>
 
-        <div>
+        <div className="trailer">
           <h2>Trailer</h2>
-
+          {trailerInfo && trailerInfo.length > 0 && (
+            <iframe
+              title="Trailer"
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${trailerInfo[0].key}`}
+              allowFullScreen
+            />
+          )}
         </div>
 
         <h2>Recomendações</h2>
@@ -156,9 +173,9 @@ function Detalhes() {
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
                 />
+                <h5>{movie.title}</h5>
+                <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
               </Link>
-              <h5>{movie.title}</h5>
-              <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
             </div>
           ))}
         </div>
