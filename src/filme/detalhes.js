@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import BarraLogo from "./barraLogo";
 import "../App.css";
+// import { format } from "date-fns";
 
 function Detalhes() {
   const [movies, setMovies] = useState([]);
@@ -11,6 +12,7 @@ function Detalhes() {
   const { movieId } = useParams();
   const [genres, setGenres] = useState([]);
   const [elenco, setElenco] = useState([]);
+  const [trailerInfo, setTrailer] = useState([]);
 
   useEffect(() => {
     axios
@@ -38,6 +40,19 @@ function Detalhes() {
       })
       .catch((error) => {
         console.error("Erro ao buscar o elenco do filme:", error);
+      });
+
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
+        params: {
+          api_key: "40ae060748d346a47b5c16bf579a6764",
+        },
+      })
+      .then((response) => {
+        setTrailer(response.data.casts);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o trailer do filme:", error);
       });
   }, [movieId]);
 
@@ -69,7 +84,10 @@ function Detalhes() {
 
         <div className="cabecalhoDescricao">
           <div className="header-info">
-            <h3>{movieDetails.title}</h3>
+            <h3>
+              {movieDetails.title}
+              {/* {format(new Date(movieDetails.release_date), " dd/MM/yyyy")} */}
+            </h3>
             {genres && (
               <div className="genre">
                 {genres.map((genre, index) => (
@@ -80,13 +98,29 @@ function Detalhes() {
                 ))}
               </div>
             )}
+            <p className="duracao">
+              {Math.floor(movieDetails.runtime / 60)}h{" "}
+              {movieDetails.runtime % 60}min •{" "}
+            </p>
           </div>
 
-          <p className="duracao">
-            {Math.floor(movieDetails.runtime / 60)}h {movieDetails.runtime % 60}min
-          </p>
           <p className="classificacao">
-            {Math.round(movieDetails.vote_average * 10)}% Avaliação dos usuários
+            <div className="circle-wrap">
+              <div className="circle">
+                <div className="mask full">
+                  <div className="fill"></div>
+                </div>
+
+                <div className="mask half">
+                  <div className="fill"></div>
+                </div>
+
+                <div className="inside-circle">
+                  {Math.round(movieDetails.vote_average * 10)}%
+                </div>
+              </div>
+            </div>
+            <p className="avaliacao">Avaliação dos usuários</p>
           </p>
 
           <h4>Sinopse</h4>
@@ -98,7 +132,10 @@ function Detalhes() {
         <div className="container-elenco">
           {elenco.map((actor) => (
             <div key={actor.id}>
-              <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} />
+              <img
+                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                alt={actor.name}
+              />
               <h4>{actor.name}</h4>
               <p>{actor.character}</p>
             </div>
@@ -107,7 +144,7 @@ function Detalhes() {
 
         <div>
           <h2>Trailer</h2>
-          {/* Você pode adicionar o código para exibir o trailer aqui */}
+
         </div>
 
         <h2>Recomendações</h2>
