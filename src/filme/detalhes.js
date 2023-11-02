@@ -128,38 +128,43 @@ function Detalhes() {
               </svg>
             </div>
             <div className="number">
-            <h5 id="numberProgress">{movieDetails.vote_average ? movieDetails.vote_average * 10 : 0}%</h5>
+              <h5 id="numberProgress">
+                {movieDetails.vote_average ? movieDetails.vote_average * 10 : 0}
+                %
+              </h5>
             </div>
           </div>
 
-          <h4>Sinopse</h4>
-          <p>
-            {movieDetails.overview
-              ? movieDetails.overview
-              : "A sinopse não está disponivel em portugues"}
-          </p>
+          <div className="sinopse">
+            <h4>Sinopse</h4>
+            <p>
+              {movieDetails.overview
+                ? movieDetails.overview
+                : "A sinopse não está disponivel em portugues"}
+            </p>
+          </div>
         </div>
       </div>
       <div className="conteudoDetalhes">
         <h2>Elenco Oficial</h2>
         <div className="container-elenco">
-        {elenco.map((actor) => (
-          <div key={actor.id}>
-            {actor.profile_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                alt={actor.name}
-              />
-            ) : (
-              <img
-                src="/caminho_para_imagem_padrao.png" // Substitua pelo caminho da imagem padrão
-                alt={actor.name}
-              />
-            )}
-            <h4>{actor.name}</h4>
-            <p>{actor.character}</p>
-          </div>
-        ))}
+          {elenco.map((actor) => (
+            <div key={actor.id}>
+              {actor.profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  alt={actor.name}
+                />
+              ) : (
+                <img
+                  src="/caminho_para_imagem_padrao.png" // Substitua pelo caminho da imagem padrão
+                  alt={actor.name}
+                />
+              )}
+              <h4>{actor.name}</h4>
+              <p>{actor.character}</p>
+            </div>
+          ))}
         </div>
 
         <div className="trailer">
