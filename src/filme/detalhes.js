@@ -87,7 +87,7 @@ function Detalhes() {
   return (
     <div className="App">
       <BarraLogo />
-      
+
       <div className="imagemDetalhes">
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
@@ -95,71 +95,73 @@ function Detalhes() {
           onClick={updateProgressBar}
         />
 
-          <div className="header-info">
-            <h3>
-              {movieDetails.title} (
-              {movieDetails.release_date
-                ? format(new Date(movieDetails.release_date + "EDT"), "yyyy")
-                : "-"}
-              )
-            </h3>
+        <div className="header-info">
+          <h3>
+            {movieDetails.title} (
+            {movieDetails.release_date
+              ? format(new Date(movieDetails.release_date + "EDT"), "yyyy")
+              : "-"}
+            )
+          </h3>
 
-            <div className="descricaoSubtitulo">
-              {genres && (
-                <div className="genre">
-                  {genres.map((genre, index) => (
-                    <span key={genre.id}>
-                      {genre.name}
-                      {index !== genres.length - 1 && ", "}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <div className="duracao">
-              <p>
-                {Math.floor(movieDetails.runtime / 60)}h{" "}
-                {movieDetails.runtime % 60}min
-              </p>
-              </div>
-
-              <div className="data">
+          <div className="descricaoSubtitulo">
+          <div className="data">
               <p>
                 {movieDetails.release_date
                   ? format(
                       new Date(movieDetails.release_date + "EDT"),
-                      " • dd/MM/yyyy •"
+                      " dd/MM/yyyy •"
                     )
                   : "-"}
-             
               </p>
-              </div>
             </div>
 
-          <div className="box">
-            <div className="box-circle">
-              <svg>
-                <circle cx="40" cy="40" r="40"></circle>
-                <circle id="circleProgress" cx="40" cy="40" r="40"></circle>
-              </svg>
-            </div>
-            {isMovieLoaded && (
-              <div className="number">
-                <h5 id="numberProgress">
-                  {Math.round(movieDetails.vote_average * 10)}%
-                </h5>
+            {genres && (
+              <div className="genre">
+                {genres.map((genre, index) => (
+                  <span key={genre.id}>
+                    {genre.name}
+                    {index !== genres.length - 1 && ", "}
+                  </span>
+                ))}
               </div>
             )}
-          </div>
-            <p className="avaliacaoNome">Avaliação dos <br/> usuários</p>
 
-          <div className="sinopse">
-            <h4>Sinopse</h4>
-            <p>
-              {movieDetails.overview
-                ? movieDetails.overview
-                : "A sinopse não está disponível em português"}
+            <div className="duracao">
+              <p>
+                • {Math.floor(movieDetails.runtime / 60)}h{" "}
+                {movieDetails.runtime % 60}min
+              </p>
+            </div>
+          </div>
+
+          <div className="avaliacao">
+            <div className="box">
+              <div className="box-circle">
+                <svg>
+                  <circle cx="40" cy="40" r="40"></circle>
+                  <circle id="circleProgress" cx="40" cy="40" r="40"></circle>
+                </svg>
+              </div>
+              {isMovieLoaded && (
+                <div className="number">
+                  <h5 id="numberProgress">
+                    {Math.round(movieDetails.vote_average * 10)}%
+                  </h5>
+                </div>
+              )}
+            </div>
+            <p className="avaliacaoNome">
+              Avaliação dos <br /> usuários
             </p>
+            <div className="sinopse">
+              <h4>Sinopse</h4>
+              <p>
+                {movieDetails.overview
+                  ? movieDetails.overview
+                  : "A sinopse não está disponível em português"}
+              </p>
+            </div>
           </div>
         </div>
       </div>
