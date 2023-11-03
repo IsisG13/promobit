@@ -73,12 +73,35 @@
   margin: 0 0 0 8%;
 }
 
-.descricaoImagem p {
-  color: #646464;
-  font-size: 100%;
-  font-weight: 700;
-  line-height: 24px;
-  word-wrap: break-word;
+.descricaoSubtitulo {
+  margin-top: 34px;
+
+  .duracao {
+    margin-top: -18px;
+    margin-left: 20px;
+  }
+  
+  .data {
+    float: right;
+    margin-left: 94px;
+    margin-top: -54px;
+  }
+
+  .genre {
+    float: right;
+    margin-right: 121px;
+    margin-left: 200px;
+  }  
+}
+
+.sinopse {
+  width: 559px;
+}
+
+
+.avaliacaoNome {
+  margin-top: 42px;
+  margin-left: 121px;
 }
 
 .descricaoImagem h5 {
@@ -130,12 +153,12 @@
 
 .imagemDetalhes p {
   text-align: left;
-  margin-left: 20px;
-  width: 58rem;
+  /* margin-left: 20px; */
+  /* width: 58rem; */
 }
 
 .imagemDetalhes h4 {
-  margin-top: 35px;
+  margin-top: 56px;
   text-align: left;
   margin-left: 20px;
 }
@@ -161,6 +184,7 @@
 
 .recomendacoes h5,
 p {
+  text-decoration: none;
   margin-left: 15px;
 }
 
@@ -193,21 +217,11 @@ p {
   margin-right: 20px;
 }
 
-.genre {
-  margin-right: 762px;
-  margin-left: 102px;
-}
-
 .classificacao {
   font-size: 16px;
   font-weight: bold;
   line-height: 38px;
   word-wrap: break-word;
-}
-
-.duracao {
-  margin-top: -18px;
-  margin-left: 16%;
 }
 
 .container-elenco {
@@ -242,7 +256,7 @@ p {
 
 .box {
   position: absolute;
-  top: 334px;
+  top: 177px;
   text-transform: (-50%, -50%);
   border-radius: 5px;
   padding: 15px;

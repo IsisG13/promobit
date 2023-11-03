@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import BarraLogo from "./barraLogo";
 import "../App.css";
+import indefinido from "../imagens/indefinido.png";
 
 function Detalhes() {
   const [movies, setMovies] = useState([]);
@@ -12,6 +13,7 @@ function Detalhes() {
   const [genres, setGenres] = useState([]);
   const [elenco, setElenco] = useState([]);
   const [trailerInfo, setTrailerInfo] = useState([]);
+  const [isMovieLoaded, setIsMovieLoaded] = useState(false);
 
   useEffect(() => {
     axios
@@ -21,10 +23,9 @@ function Detalhes() {
         },
       })
       .then((response) => {
-        console.log(response);
         setMovieDetails(response.data);
         setGenres(response.data.genres);
-        // Chame a função updateProgressBar após a atualização dos detalhes do filme
+        setIsMovieLoaded(true);
         updateProgressBar();
       })
       .catch((error) => {
@@ -75,25 +76,18 @@ function Detalhes() {
       });
   }, []);
 
-  useEffect(() => {
-    // Não é necessário chamar updateProgressBar aqui, pois já foi chamado na primeira useEffect.
-  }, [movieDetails]); // Adicione movieDetails como uma dependência se necessário.
-
   function updateProgressBar() {
-    console.log("!");
     const circle = document.querySelector("#circleProgress");
-    console.log(circle);
     const number = document.querySelector("#numberProgress");
-    console.log(number);
-    number.textContent = `${Math.round(movieDetails.vote_average * 10)}%`;
-    console.log(movieDetails.vote_average);
-    return (circle.style.strokeDashoffset =
-      251 - 2.51 * (movieDetails.vote_average * 10));
+    const percentage = Math.round(movieDetails.vote_average * 10);
+    number.textContent = `${percentage}%`;
+    circle.style.strokeDashoffset = 251 - 2.51 * percentage;
   }
 
   return (
     <div className="App">
       <BarraLogo />
+      
       <div className="imagemDetalhes">
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
@@ -101,24 +95,46 @@ function Detalhes() {
           onClick={updateProgressBar}
         />
 
-        <div className="cabecalhoDescricao">
           <div className="header-info">
-            <h3>{movieDetails.title}</h3>
-            {genres && (
-              <div className="genre">
-                {genres.map((genre, index) => (
-                  <span key={genre.id}>
-                    {genre.name}
-                    {index !== genres.length - 1 && ", "}
-                  </span>
-                ))}
+            <h3>
+              {movieDetails.title} (
+              {movieDetails.release_date
+                ? format(new Date(movieDetails.release_date + "EDT"), "yyyy")
+                : "-"}
+              )
+            </h3>
+
+            <div className="descricaoSubtitulo">
+              {genres && (
+                <div className="genre">
+                  {genres.map((genre, index) => (
+                    <span key={genre.id}>
+                      {genre.name}
+                      {index !== genres.length - 1 && ", "}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="duracao">
+              <p>
+                {Math.floor(movieDetails.runtime / 60)}h{" "}
+                {movieDetails.runtime % 60}min
+              </p>
               </div>
-            )}
-            <p className="duracao">
-              {Math.floor(movieDetails.runtime / 60)}h{" "}
-              {movieDetails.runtime % 60}min •{" "}
-            </p>
-          </div>
+
+              <div className="data">
+              <p>
+                {movieDetails.release_date
+                  ? format(
+                      new Date(movieDetails.release_date + "EDT"),
+                      " • dd/MM/yyyy •"
+                    )
+                  : "-"}
+             
+              </p>
+              </div>
+            </div>
 
           <div className="box">
             <div className="box-circle">
@@ -127,20 +143,22 @@ function Detalhes() {
                 <circle id="circleProgress" cx="40" cy="40" r="40"></circle>
               </svg>
             </div>
-            <div className="number">
-              <h5 id="numberProgress">
-                {movieDetails.vote_average ? movieDetails.vote_average * 10 : 0}
-                %
-              </h5>
-            </div>
+            {isMovieLoaded && (
+              <div className="number">
+                <h5 id="numberProgress">
+                  {Math.round(movieDetails.vote_average * 10)}%
+                </h5>
+              </div>
+            )}
           </div>
+            <p className="avaliacaoNome">Avaliação dos <br/> usuários</p>
 
           <div className="sinopse">
             <h4>Sinopse</h4>
             <p>
               {movieDetails.overview
                 ? movieDetails.overview
-                : "A sinopse não está disponivel em portugues"}
+                : "A sinopse não está disponível em português"}
             </p>
           </div>
         </div>
@@ -156,10 +174,7 @@ function Detalhes() {
                   alt={actor.name}
                 />
               ) : (
-                <img
-                  src="/caminho_para_imagem_padrao.png" // Substitua pelo caminho da imagem padrão
-                  alt={actor.name}
-                />
+                <img src={indefinido} alt={actor.name} />
               )}
               <h4>{actor.name}</h4>
               <p>{actor.character}</p>
