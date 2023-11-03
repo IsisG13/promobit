@@ -1,4 +1,4 @@
-/* INICIO */
+/* Estilos que se aplicam a todas as telas */
 .App {
   text-align: center;
 }
@@ -95,6 +95,61 @@
 
 .active {
   background-color: #d18000;
+}
+
+/* Estilos para telas menores (por exemplo, telas menores que 1037px de largura) */
+@media (max-width: 1072px) {
+  .titulo {
+    width: 100%;
+    margin: 0;
+  }
+
+  .itens p {
+    font-size: 80%;
+  }
+
+  .button {
+    width: 75%;
+    margin: 0 0 0 13%;
+  }
+}
+
+@media (max-width: 860px) {
+  .titulo {
+    text-align: left;
+    width: 100%;
+    margin: 0;
+  }
+
+  .itens p {
+    font-size: 80%;
+  }
+
+  .button {
+    width: 67%;
+    margin: 0 0 0 15%;
+  }
+}
+
+@media (max-width: 780px) {
+  .cabecalho h2 {
+    text-align: left;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cabecalho h2 {
+    text-align: left;
+    font-size: 195%;
+    width: 105%;
+    margin: 0;
+  }
+
+  .button {
+    width: 102%;
+    margin: 0;
+  }
 }
 
 /* DETALHES */
@@ -196,15 +251,15 @@ circle:nth-child(2) {
   display: flex;
   background-color: #2d0c5e;
   color: white;
-  height: 560px;
+  height: 740px;
 }
 
 .imagemDetalhes img {
   border-radius: 4px;
   margin-top: 50px;
   margin-left: 122px;
-  width: 383px;
-  height: 547px;
+  width: 453px;
+  height: 733px;
 }
 
 .imagemDetalhes h3 {
@@ -263,9 +318,17 @@ p {
   margin-right: 20px;
 }
 
+.recomendacoes h5 {
+  color: black;
+}
+
+.recomendacoes p {
+  color: black;
+}
+
 .conteudoDetalhes {
   margin-left: 123px;
-  margin-top: 50px;
+  margin-top: 67px;
   text-align: left;
 }
 
@@ -287,4 +350,181 @@ p {
 .container-elenco h4,
 p {
   margin-left: 15px;
+}
+
+@media (max-width: 1144px) {
+  .imagemDetalhes{
+    width: 100%;
+  }
+  .imagemDetalhes img {
+    margin-left: 5%;
+    width: 50%;
+    height: 98%;
+  }
+
+  .imagemDetalhes h3 {
+    text-align: left;
+    font-size: 147%;
+    margin-top: 15%;
+  }
+
+  .imagemDetalhes h4 {
+    margin: 7% 0 -3% 4%;
+  }
+
+  .descricaoSubtitulo {
+    margin-top: -6%;
+    font-size: 127%;
+    display: flex;
+  }
+
+  .descricaoSubtitulo .data {
+   height: 0.9px;
+   margin: -1% 0 0 0;
+   padding: 0 0.6% 0 0; 
+  }
+
+  .avaliacao {
+    margin: -1% 0 0 0;
+    font-size: 120%;
+  }
+
+  .box {
+    top: 23%;
+    position: absolute;
+    padding: 2%;
+  }
+
+  .avaliacaoNome {
+    margin-top: 5px;
+  }
+
+  .avaliacao .sinopse {
+    width: 95%;
+  }
+
+  .conteudoDetalhes {
+    margin-left: 5%;
+    margin-top: 8%;
+  }
+
+  .recomendacoes h5 {
+    color: black;
+    font-size: 105%;
+    margin: 5% 0 5% 6%;
+  }
+
+  .recomendacoes p {
+    color: black;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 117%;
+  }
+
+  .imagemDetalhes{
+    width: 117%;
+    height: 50%;
+  }
+  .imagemDetalhes img {
+    margin-left: 16%;
+    width: 70%;
+    height: 90%;
+  }
+
+  .imagemDetalhes h3 {
+    text-align: left;
+    font-size: 164%;
+    margin-top: 323%;
+    margin-left: -211%;
+  }
+
+  .imagemDetalhes h4 {
+    margin: 7% 0 -3% 4%;
+  }
+
+  .descricaoSubtitulo {
+    margin-top: -6%;
+    font-size: 127%;
+    margin-left: -221%;
+    display: flex;
+  }
+
+  .descricaoSubtitulo .data {
+    color: white;
+    font-size: 106%;
+    font-weight: bold;
+    height: 3.6%;
+    margin: -0.5% 0 0 0;
+    padding: 0 0.6% 0 0;
+  }
+
+  .descricaoSubtitulo .genre {
+    color: white;
+    font-size: 106%;
+    font-weight: bold;
+    margin: 10.5% 0 0 0;
+    margin-left: -15%;
+  }
+
+  .descricaoSubtitulo .duracao {
+        color: white;
+    font-size: 106%;
+    font-weight: bold;
+    margin: 5.5% 0 0 0;
+    margin-left: -18%;
+  }
+
+  .avaliacao {
+    margin: 75% 0 0 0;
+    margin-left: -233%;
+    font-size: 120%;
+  }
+
+  .box {
+    top: 110%;
+    position: absolute;
+    margin-left: 4%;
+  }
+
+  .number {
+    font-size: 120%;
+  }
+
+  .avaliacao .avaliacaoNome {
+    margin: -18% 0 0 16%;
+    font-size: 134%;
+  }
+
+  .avaliacao .sinopse {
+    width: 65%;
+    margin-left: 4%;
+    font-size: 147%;
+  }
+
+  .conteudoDetalhes h2 {
+    font-size: 179%;
+  }
+
+  .conteudoDetalhes h4 {
+    font-size: 115%;
+  }
+
+  .conteudoDetalhes p {
+    font-size: 122%;
+  }
+
+  .recomendacoes h5 {
+    color: black;
+    font-size: 115%;
+    margin: 5% 0 5% 6%;
+  }
+
+  .recomendacoes p {
+    color: black;
+    font-size: 115%;
+    margin: 5% 0 5% 6%;
+  }
 }

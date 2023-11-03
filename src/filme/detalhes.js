@@ -13,6 +13,7 @@ function Detalhes() {
   const [genres, setGenres] = useState([]);
   const [elenco, setElenco] = useState([]);
   const [trailerInfo, setTrailerInfo] = useState([]);
+  const [roteiristas, setRoteiristas] = useState([]);
   const [isMovieLoaded, setIsMovieLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,6 +28,22 @@ function Detalhes() {
         setGenres(response.data.genres);
         setIsMovieLoaded(true);
         updateProgressBar();
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar detalhes do filme:", error);
+      });
+
+      axios
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
+        params: {
+          api_key: "40ae060748d346a47b5c16bf579a6764",
+        },
+      })
+      .then((response) => {
+        // setMovieDetails(response.data);
+        // setGenres(response.data.genres);
+        // setIsMovieLoaded(true);
+        // updateProgressBar();
       })
       .catch((error) => {
         console.error("Erro ao buscar detalhes do filme:", error);
@@ -162,6 +179,25 @@ function Detalhes() {
                   : "A sinopse não está disponível em português"}
               </p>
             </div>
+
+            {/* <div className="credits">
+            {roteiristas.cast.characters.map((character, idx) => (
+                <div key={character.id + idx}>
+                  <span>{character.name}</span>
+                  <small>{character.known_for_department}</small>
+                </div>
+              ))}
+              <div>
+                <span>{roteiristas.crew.director?.name}</span>
+                <small>{roteiristas.crew.director?.job}</small>
+              </div>
+              {roteiristas.crew.screenplay.map((s, i) => (
+                <div key={s.id + i}>
+                  <span>{s.name}</span>
+                  <small>{s.department}</small>
+                </div>
+              ))}
+            </div> */}
           </div>
         </div>
       </div>
