@@ -156,8 +156,8 @@
 
 .descricaoSubtitulo {
   display: flex;
-  color: powderblue;
-  margin-left: 18pxs;
+  /* color: powderblue; */
+  margin-left: 18px;
   margin-top: 34px;
 
   .duracao {
@@ -181,7 +181,7 @@
 
 .avaliacao {
   margin: -10px 0 0 0;
-  color: pink;
+  /* color: pink; */
   
   .sinopse {
     width: 559px;
@@ -278,6 +278,26 @@ circle:nth-child(2) {
   margin-top: 56px;
   text-align: left;
   margin-left: 20px;
+}
+
+.roteiristas {
+  margin-top: 20px;
+}
+
+.roteirista-container {
+  margin-top: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.roteirista-container h5 {
+  font-size: 16px;
+  margin: 0 9px;
+}
+
+.roteirista-container p {
+  font-size: 13px;
 }
 
 .recomendacoes {
@@ -417,6 +437,26 @@ p {
   .recomendacoes p {
     color: black;
   }
+
+  .roteiristas {
+    margin-top: 20px;
+  }
+  
+  .roteirista-container {
+    margin-top: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  
+  .roteirista-container h5 {
+    font-size: 16px;
+    margin: 0 9px;
+  }
+  
+  .roteirista-container p {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -470,7 +510,7 @@ p {
   }
 
   .descricaoSubtitulo .duracao {
-        color: white;
+    color: white;
     font-size: 106%;
     font-weight: bold;
     margin: 5.5% 0 0 0;
@@ -494,14 +534,14 @@ p {
   }
 
   .avaliacao .avaliacaoNome {
-    margin: -18% 0 0 16%;
+    margin: -14% 0 0 16%;
     font-size: 134%;
   }
 
   .avaliacao .sinopse {
-    width: 65%;
+    width: 89%;
     margin-left: 4%;
-    font-size: 147%;
+    font-size: 142%;
   }
 
   .conteudoDetalhes h2 {

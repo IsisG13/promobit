@@ -33,22 +33,6 @@ function Detalhes() {
         console.error("Erro ao buscar detalhes do filme:", error);
       });
 
-      axios
-      .get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
-        params: {
-          api_key: "40ae060748d346a47b5c16bf579a6764",
-        },
-      })
-      .then((response) => {
-        // setMovieDetails(response.data);
-        // setGenres(response.data.genres);
-        // setIsMovieLoaded(true);
-        // updateProgressBar();
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar detalhes do filme:", error);
-      });
-
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
         params: {
@@ -56,23 +40,30 @@ function Detalhes() {
         },
       })
       .then((response) => {
-        setElenco(response.data.cast);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar o elenco do filme:", error);
-      });
+        const crew = response.data.crew;
 
-    axios
-      .get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-        params: {
-          api_key: "40ae060748d346a47b5c16bf579a6764",
-        },
-      })
-      .then((response) => {
-        setTrailerInfo(response.data.results);
+        const characters = crew
+          .filter((person) => person.department === "Characters")
+          .slice(0, 2);
+
+        const directors = crew
+          .filter((person) => person.department === "Directing")
+          .slice(0, 2);
+
+        const screenplay = crew
+          .filter((person) => person.department === "Writing")
+          .slice(0, 2);
+
+        const filteredRoteiristas = [
+          ...characters,
+          ...directors,
+          ...screenplay,
+        ];
+
+        setRoteiristas(removeDuplicates(filteredRoteiristas));
       })
       .catch((error) => {
-        console.error("Erro ao buscar o trailer do filme:", error);
+        console.error("Erro ao buscar os roteiristas do filme:", error);
       });
   }, [movieId]);
 
@@ -101,6 +92,18 @@ function Detalhes() {
     circle.style.strokeDashoffset = 251 - 2.51 * percentage;
   }
 
+  // Função para remover roteiristas duplicados
+  function removeDuplicates(crew) {
+    const seen = {};
+    return crew.filter((roteirista) => {
+      if (!seen[roteirista.credit_id]) {
+        seen[roteirista.credit_id] = true;
+        return true;
+      }
+      return false;
+    });
+  }
+
   return (
     <div className="App">
       <BarraLogo />
@@ -122,7 +125,7 @@ function Detalhes() {
           </h3>
 
           <div className="descricaoSubtitulo">
-          <div className="data">
+            <div className="data">
               <p>
                 {movieDetails.release_date
                   ? format(
@@ -171,33 +174,25 @@ function Detalhes() {
             <p className="avaliacaoNome">
               Avaliação dos <br /> usuários
             </p>
-            <div className="sinopse">
-              <h4>Sinopse</h4>
-              <p>
-                {movieDetails.overview
-                  ? movieDetails.overview
-                  : "A sinopse não está disponível em português"}
-              </p>
-            </div>
 
-            {/* <div className="credits">
-            {roteiristas.cast.characters.map((character, idx) => (
-                <div key={character.id + idx}>
-                  <span>{character.name}</span>
-                  <small>{character.known_for_department}</small>
-                </div>
-              ))}
-              <div>
-                <span>{roteiristas.crew.director?.name}</span>
-                <small>{roteiristas.crew.director?.job}</small>
-              </div>
-              {roteiristas.crew.screenplay.map((s, i) => (
-                <div key={s.id + i}>
-                  <span>{s.name}</span>
-                  <small>{s.department}</small>
-                </div>
-              ))}
-            </div> */}
+            <div className="sinopse">
+          <h4>Sinopse</h4>
+          <p>
+            {movieDetails.overview
+              ? movieDetails.overview
+              : "A sinopse não está disponível em português"}
+          </p>
+        </div>
+
+        <div className="roteiristas">
+          <div className="roteirista-container">
+            {roteiristas.map((roteirista) => (
+               <p key={roteirista.credit_id}>
+               <h5>{roteirista.name}</h5> <p>{roteirista.job}</p>
+             </p>
+            ))}
+          </div>
+        </div>
           </div>
         </div>
       </div>
