@@ -60,10 +60,24 @@ function Detalhes() {
           ...screenplay,
         ];
 
+        setElenco(response.data.cast);        
         setRoteiristas(removeDuplicates(filteredRoteiristas));
       })
       .catch((error) => {
-        console.error("Erro ao buscar os roteiristas do filme:", error);
+        console.error("Erro ao buscar o elenco do filme:", error);
+      });
+
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+        params: {
+          api_key: "40ae060748d346a47b5c16bf579a6764",
+        },
+      })
+      .then((response) => {
+        setTrailerInfo(response.data.results);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o trailer do filme:", error);
       });
   }, [movieId]);
 
@@ -92,17 +106,17 @@ function Detalhes() {
     circle.style.strokeDashoffset = 251 - 2.51 * percentage;
   }
 
-  // Função para remover roteiristas duplicados
-  function removeDuplicates(crew) {
-    const seen = {};
-    return crew.filter((roteirista) => {
-      if (!seen[roteirista.credit_id]) {
-        seen[roteirista.credit_id] = true;
-        return true;
-      }
-      return false;
-    });
-  }
+// Remover roteiristas duplicados
+function removeDuplicates(crew) {
+  const seen = {};
+  return crew.filter((roteirista) => {
+    if (!seen[roteirista.credit_id]) {
+      seen[roteirista.credit_id] = true;
+      return true;
+    }
+    return false;
+  });
+}
 
   return (
     <div className="App">
@@ -174,8 +188,7 @@ function Detalhes() {
             <p className="avaliacaoNome">
               Avaliação dos <br /> usuários
             </p>
-
-            <div className="sinopse">
+           <div className="sinopse">
           <h4>Sinopse</h4>
           <p>
             {movieDetails.overview
@@ -187,15 +200,19 @@ function Detalhes() {
         <div className="roteiristas">
           <div className="roteirista-container">
             {roteiristas.map((roteirista) => (
-               <p key={roteirista.credit_id}>
-               <h5>{roteirista.name}</h5> <p>{roteirista.job}</p>
-             </p>
+              <div key={roteirista.credit_id}>
+                <h5>{roteirista.name}</h5>
+                <p>{roteirista.job}</p>
+              </div>
             ))}
           </div>
         </div>
+        
           </div>
+
         </div>
       </div>
+
       <div className="conteudoDetalhes">
         <h2>Elenco Oficial</h2>
         <div className="container-elenco">
@@ -214,6 +231,16 @@ function Detalhes() {
             </div>
           ))}
         </div>
+
+        {/* <div className="roteiristas">
+          <div className="roteirista-container">
+            {roteiristas.map((roteirista) => (
+              <p key={roteirista.credit_id}>
+                {roteirista.name} ({roteirista.job})
+              </p>
+            )}
+          </div>
+        </div> */}
 
         <div className="trailer">
           <h2>Trailer</h2>
