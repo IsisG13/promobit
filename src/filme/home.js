@@ -68,9 +68,11 @@ function Home() {
       <div className="cabecalho">
         <BarraLogo />
         <div className="itens">
+          <div className="titulo">
           <h2>
-            Milhões de filmes, séries e pessoas para descobrir. <br /> Explore já.
+            Milhões de filmes, séries e pessoas para descobrir. Explore já.
           </h2>
+          </div>
           <p>FILTRE POR: </p>
           <div className="button">
             {genres.map((genre) => (
@@ -102,8 +104,10 @@ function Home() {
                 </div>
               </Link>
 
-              <h5>{movie.title}</h5>
-              <p>{format(new Date(movie.release_date), "d MMM yyyy")}</p>
+              <div className="descricaoImagem">
+              <h5 className="descricaoImagem">{movie.title}</h5>
+              <p className="descricaoImagem">{format(new Date(movie.release_date), "d MMM yyyy")}</p>
+              </div>
             </div>
           )
         ))}

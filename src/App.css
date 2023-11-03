@@ -3,17 +3,17 @@
 }
 
 .cabecalho {
-  width: 100%; 
-  height: 100%; 
-  background: #2D0C5E
+  width: 100%;
+  height: 100%;
+  background: #2d0c5e;
 }
 
 .cabecalho h2 {
   color: white;
-font-size: 48px;
-font-weight: 700;
-line-height: 56px;
-word-wrap: break-word
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  word-wrap: break-word;
 }
 
 .itens {
@@ -40,19 +40,52 @@ word-wrap: break-word
   border-radius: 7px;
 }
 
+.titulo {
+  text-align: center;
+  width: 55%;
+  margin: 0 0 0 21%;
+}
+
+.button {
+  width: 45%;
+  margin: 0 0 0 27%;
+  text-align: center;
+}
+
 .limparId {
   font-size: 10px;
   border-radius: 50%;
   margin-left: 6px;
   padding: 2px 4px;
   background-color: #fff;
-  color: #D18000;
+  color: #d18000;
 }
 
 .filmes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
+  margin-bottom: 30px;
+}
+
+.descricaoImagem {
+  text-align: left;
+  margin: 0 0 0 8%;
+}
+
+.descricaoImagem p {
+  color: #646464;
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.descricaoImagem h5 {
+  font-size: 80%;
+  font-weight: bold;
+  line-height: 20px;
+  word-wrap: break-word;
 }
 
 .conteudo-filme {
@@ -63,20 +96,20 @@ word-wrap: break-word
   margin-top: 11px;
   width: 201px;
   height: 276px;
-  border-radius: 4px; 
-  border: 1px #E7E7E7 solid;
+  border-radius: 4px;
+  border: 1px #e7e7e7 solid;
 }
 
 .logo {
   height: 40px;
   padding: 15px 5px 0 52px;
   text-align-last: left;
-  background-color: #5C16C5;
+  background-color: #5c16c5;
 }
 
 .imagemDetalhes {
-  display: flex; 
-  background-color: #2D0C5E;
+  display: flex;
+  background-color: #2d0c5e;
   color: white;
   height: 560px;
 }
@@ -92,7 +125,7 @@ word-wrap: break-word
 .imagemDetalhes h3 {
   text-align: left;
   margin-top: 50px;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .imagemDetalhes p {
@@ -104,7 +137,7 @@ word-wrap: break-word
 .imagemDetalhes h4 {
   margin-top: 35px;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .conteudoDetalhes {
@@ -126,7 +159,8 @@ word-wrap: break-word
   display: inline-block;
 }
 
-.recomendacoes h5, p {
+.recomendacoes h5,
+p {
   margin-left: 15px;
 }
 
@@ -142,11 +176,11 @@ word-wrap: break-word
   margin-left: -11px;
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .recomendacoes {
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 .rating-duration {
@@ -165,10 +199,10 @@ word-wrap: break-word
 }
 
 .classificacao {
-font-size: 16px;
-font-weight: bold;
-line-height: 38px;
-word-wrap: break-word
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 38px;
+  word-wrap: break-word;
 }
 
 .duracao {
@@ -181,7 +215,7 @@ word-wrap: break-word
   margin-left: -16px;
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .container-elenco img {
@@ -191,7 +225,8 @@ word-wrap: break-word
   margin: 0 0 0 10px;
 }
 
-.container-elenco h4, p {
+.container-elenco h4,
+p {
   margin-left: 15px;
 }
 
@@ -219,7 +254,7 @@ word-wrap: break-word
   position: relative;
 }
 
-  circle {
+circle {
   width: 150px;
   height: 150px;
   fill: rgb(49 64 82 / 29%);
@@ -230,12 +265,12 @@ word-wrap: break-word
   stroke-dashoffset: 251;
 }
 
-circle:nth-child(1){
+circle:nth-child(1) {
   stroke-dashoffset: 0;
   stroke: #167ac633;
 }
 
-circle:nth-child(2){
+circle:nth-child(2) {
   stroke: #3bee2b;
   transition: stroke-deshoffset 0.8s;
 }
@@ -253,5 +288,5 @@ circle:nth-child(2){
 }
 
 .active {
-  background-color: #D18000;
+  background-color: #d18000;
 }
