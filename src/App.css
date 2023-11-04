@@ -142,18 +142,30 @@
   .cabecalho h2 {
     text-align: left;
     font-size: 195%;
-    width: 105%;
-    margin: 0;
+    width: 144%;
+    margin: 0 0 0 -18%;
   }
 
   .button {
-    width: 102%;
-    margin: 0;
+    width: 144%;
+    margin: 0 0 0 -22%;
+  }
+
+  .conteudo-filme img {
+    margin-top: 11px;
+    margin-left: 13%;
+    width: 201px;
+    height: 276px;
+    border-radius: 4px;
+    border: 1px #e7e7e7 solid
+  }
+
+  .descricaoImagem h5 {
+    width: 51%;
   }
 }
 
 /* DETALHES */
-
 .descricaoSubtitulo {
   display: flex;
   /* color: powderblue; */
@@ -461,15 +473,6 @@ p {
 
 @media (max-width: 798px) {
   
-  .logo {
-    /* width: 91%; */
-  }
-
-  /* .imagem {
-    margin-left: 23%;
-    width: 70%;
-    height: 90%;
-  } */
 
   .imagemDetalhes{
     width: 100%;
@@ -519,16 +522,16 @@ p {
     font-size: 106%;
     font-weight: bold;
     margin: 5.5% 0 0 0;
-    margin-left: -46%;
+    margin-left: -54%;
   }
 
   .descricaoSubtitulo .genre {
-    width: 46%;
+    width: 57%;
     color: white;
     font-size: 106%;
     font-weight: bold;
     margin: 10.5% 0 0 0;
-    margin-left: -20%;
+    margin-left: -26%;
   }
 
   .avaliacao {
@@ -563,10 +566,6 @@ p {
   .box-circle svg {
     margin-top: -15%;
     margin-left: -81%;
-  }
-
-  .numberProgress {
-
   }
 
   .conteudoDetalhes {
@@ -631,12 +630,12 @@ p {
   }
   
   .roteirista-container h5 {
-    font-size: 90%;
+    font-size: 94%;
     margin: 0 9px;
   }
   
   .roteirista-container p {
-    font-size: 86%;
+    font-size: 90%;
   }
 
   .container-elenco {
