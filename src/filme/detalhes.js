@@ -176,7 +176,6 @@ function removeDuplicates(crew) {
                   <circle cx="40" cy="40" r="40"></circle>
                   <circle id="circleProgress" cx="40" cy="40" r="40"></circle>
                 </svg>
-              </div>
               {isMovieLoaded && (
                 <div className="number">
                   <h5 id="numberProgress">
@@ -184,6 +183,7 @@ function removeDuplicates(crew) {
                   </h5>
                 </div>
               )}
+              </div>
             </div>
             <p className="avaliacaoNome">
               Avaliação dos <br /> usuários

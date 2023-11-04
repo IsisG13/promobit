@@ -465,11 +465,11 @@ p {
     /* width: 91%; */
   }
 
-  .imagem {
+  /* .imagem {
     margin-left: 23%;
     width: 70%;
     height: 90%;
-  }
+  } */
 
   .imagemDetalhes{
     width: 100%;
@@ -483,14 +483,15 @@ p {
   }
 
   .imagemDetalhes h3 {
+    width: 104%;
     text-align: left;
-    font-size: 147%;
-    margin-top: 323%;
-    margin-left: -205%;
+    font-size: 118%;
+    margin-top: 171%;
+    margin-left: -92%;
   }
 
   .imagemDetalhes h4 {
-    margin: 7% 0 -3% 2%;
+    margin: 16% 0 -3% 2%;
   }
 
   .imagemDetalhes .heade-info p {
@@ -499,8 +500,8 @@ p {
 
   .descricaoSubtitulo {
     margin-top: -6%;
-    font-size: 127%;
-    margin-left: -210%;
+    font-size: 122%;
+    margin-left: -112%;
     display: flex;
   }
 
@@ -509,16 +510,8 @@ p {
     font-size: 106%;
     font-weight: bold;
     height: 3.6%;
-    margin: -0.5% 0 0 0;
+    margin: -0.5% 0 0 4%;
     padding: 0 0.6% 0 0;
-  }
-
-  .descricaoSubtitulo .genre {
-    color: white;
-    font-size: 106%;
-    font-weight: bold;
-    margin: 10.5% 0 0 0;
-    margin-left: -15%;
   }
 
   .descricaoSubtitulo .duracao {
@@ -526,34 +519,54 @@ p {
     font-size: 106%;
     font-weight: bold;
     margin: 5.5% 0 0 0;
-    margin-left: -35%;
+    margin-left: -46%;
+  }
+
+  .descricaoSubtitulo .genre {
+    width: 46%;
+    color: white;
+    font-size: 106%;
+    font-weight: bold;
+    margin: 10.5% 0 0 0;
+    margin-left: -20%;
   }
 
   .avaliacao {
-    margin: 75% 0 0 0;
-    margin-left: -222%;
-    font-size: 120%;
+    margin: 47% 0 0 0;
+    margin-left: -109%;
+    font-size: 100%;
   }
 
   .avaliacao .avaliacaoNome {
-    margin: -17% 0 0 16%;
+    margin: -17% 0 0 24%;
     font-size: 134%;
   }
 
   .avaliacao .sinopse {
-    width: 69%;
-    margin-left: 4%;
-    font-size: 130%;
+    width: 55%;
+    margin-left: 2%;
+    font-size: 109%;
   }
 
   .box {
-    top: 97%;
-    position: absolute;
+    top: 87%;
+    position: relative;
     margin-left: 4%;
   }
 
   .number {
+    margin-top: -7%;
+    margin-left: -0%;
     font-size: 120%;
+  }
+
+  .box-circle svg {
+    margin-top: -15%;
+    margin-left: -81%;
+  }
+
+  .numberProgress {
+
   }
 
   .conteudoDetalhes {
@@ -563,7 +576,7 @@ p {
   }
 
   .conteudoDetalhes h2 {
-    font-size: 179%;
+    font-size: 169%;
   }
 
   .conteudoDetalhes h4 {
@@ -572,6 +585,11 @@ p {
 
   .conteudoDetalhes p {
     font-size: 122%;
+  }
+
+  .trailer iframe {
+    width: 81%;
+    height: 10%;
   }
 
   .recomendacoes {
@@ -602,8 +620,9 @@ p {
   }
 
   .roteirista-container {
-    width: 62%;
-    margin-left: 5%;
+    font-size: 65%;
+    width: 59%;
+    margin-left: 3%;
     margin-bottom: 4%;
     margin-top: 45px;
     display: flex;
