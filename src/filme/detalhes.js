@@ -207,9 +207,7 @@ function removeDuplicates(crew) {
             ))}
           </div>
         </div>
-        
           </div>
-
         </div>
       </div>
 

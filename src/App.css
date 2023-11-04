@@ -474,17 +474,17 @@ p {
 @media (max-width: 798px) {
   
 
-  .imagemDetalhes{
+  .imagemDetalhes {
     width: 100%;
     height: 50%;
   }
-
+  
   .imagemDetalhes img {
     margin-left: 16%;
     width: 70%;
     height: 90%;
   }
-
+  
   .imagemDetalhes h3 {
     width: 104%;
     text-align: left;
@@ -492,22 +492,23 @@ p {
     margin-top: 171%;
     margin-left: -92%;
   }
-
+  
   .imagemDetalhes h4 {
     margin: 16% 0 -3% 2%;
   }
+  
 
   .imagemDetalhes .heade-info p {
     width: 50%;
   }
-
+  
   .descricaoSubtitulo {
     margin-top: -6%;
     font-size: 122%;
     margin-left: -112%;
     display: flex;
   }
-
+  
   .descricaoSubtitulo .data {
     color: white;
     font-size: 106%;
@@ -516,7 +517,7 @@ p {
     margin: -0.5% 0 0 4%;
     padding: 0 0.6% 0 0;
   }
-
+  
   .descricaoSubtitulo .duracao {
     color: white;
     font-size: 106%;
@@ -524,6 +525,7 @@ p {
     margin: 5.5% 0 0 0;
     margin-left: -54%;
   }
+  
 
   .descricaoSubtitulo .genre {
     width: 57%;
@@ -533,29 +535,30 @@ p {
     margin: 10.5% 0 0 0;
     margin-left: -26%;
   }
-
+  
   .avaliacao {
     margin: 47% 0 0 0;
     margin-left: -109%;
     font-size: 100%;
   }
-
+  
   .avaliacao .avaliacaoNome {
     margin: -17% 0 0 24%;
     font-size: 134%;
   }
-
+  
   .avaliacao .sinopse {
     width: 55%;
     margin-left: 2%;
     font-size: 109%;
   }
-
+  
   .box {
     top: 87%;
     position: relative;
     margin-left: 4%;
   }
+  
 
   .number {
     margin-top: -7%;
@@ -567,6 +570,27 @@ p {
     margin-top: -15%;
     margin-left: -81%;
   }
+
+  .roteirista-container {
+    font-size: 65%;
+    width: 59%;
+    margin-left: 3%;
+    margin-bottom: 4%;
+    margin-top: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  
+  .roteirista-container h5 {
+    font-size: 94%;
+    margin: 0 9px;
+  }
+  
+  .roteirista-container p {
+    font-size: 90%;
+  }
+
 
   .conteudoDetalhes {
     width: 112%;
@@ -616,26 +640,6 @@ p {
     color: black;
     font-size: 115%;
     margin: 5% 0 5% 6%;
-  }
-
-  .roteirista-container {
-    font-size: 65%;
-    width: 59%;
-    margin-left: 3%;
-    margin-bottom: 4%;
-    margin-top: 45px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  
-  .roteirista-container h5 {
-    font-size: 94%;
-    margin: 0 9px;
-  }
-  
-  .roteirista-container p {
-    font-size: 90%;
   }
 
   .container-elenco {
